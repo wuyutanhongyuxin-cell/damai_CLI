@@ -1,0 +1,35 @@
+Damai-CLI License — Study & Research Only
+Copyright (c) 2026 damai-cli contributors
+
+This software is released solely for personal study and research of the
+publicly observable MTOP protocol used by damai.cn. SPDX expression:
+LicenseRef-Study-Research-Only (PEP 639).
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to use, copy, and modify the Software for personal, non-commercial study
+and research purposes ONLY, subject to the following conditions:
+
+  1. Non-commercial. The Software MAY NOT be sold, sublicensed, or used
+     in any commercial activity, paid service, or revenue-generating
+     product.
+
+  2. No scalping. The Software MAY NOT be used (directly or via
+     derivatives) for ticket scalping, automated bulk purchasing, or any
+     form of reselling tickets at a marked-up price.
+
+  3. No anti-anti-fraud. The Software MAY NOT be modified or extended to
+     bypass damai.cn's risk-control mechanisms (slide CAPTCHA, IP block,
+     account verification, real-name binding).
+
+  4. Independent project. This project is NOT affiliated with, endorsed
+     by, or sponsored by Alibaba Group or damai.cn. All trademarks
+     belong to their respective owners.
+
+  5. Use at your own risk. The authors disclaim ALL liability arising
+     from use of the Software, including (without limitation) account
+     suspension, legal claims, or financial loss.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.

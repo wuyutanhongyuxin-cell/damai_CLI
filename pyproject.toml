@@ -1,0 +1,74 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "damai-cli"
+version = "0.1.0"
+description = "大麦网演出阅览与抢票命令行工具（仅供学习研究）"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "LicenseRef-Study-Research-Only"
+license-files = ["LICENSE"]
+authors = [
+    { name = "placeholder", email = "placeholder@example.com" },
+]
+dependencies = [
+    "click>=8.1",
+    "httpx>=0.27",
+    "rich>=13.7",
+    "pyyaml>=6",
+    "browser-cookie3>=0.19",
+    "qrcode-terminal>=0.8",
+    "plyer>=2.1",
+]
+
+[project.optional-dependencies]
+# QR 登录需要无头浏览器
+qr = ["camoufox>=0.3"]
+# TLS 指纹（可选，针对强风控场景）
+tls = ["curl_cffi>=0.7"]
+# 开发测试工具
+dev = [
+    "pytest>=7",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+# 入口脚本：damai 命令映射到 cli.py 的 cli group
+damai = "damai_cli.cli:cli"
+
+# ──────────────────────────────────────────
+# pytest 配置
+# ──────────────────────────────────────────
+[tool.pytest.ini_options]
+# 默认跳过需要真实 API 的 smoke 测试
+addopts = "-m 'not smoke'"
+markers = [
+    "smoke: 需要真实网络和有效 Cookie，CI 默认跳过",
+]
+testpaths = ["tests"]
+
+# ──────────────────────────────────────────
+# ruff 配置
+# ──────────────────────────────────────────
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]   # 行长由 line-length 控制
+
+# ──────────────────────────────────────────
+# mypy 配置
+# ──────────────────────────────────────────
+[tool.mypy]
+python_version = "3.10"
+strict = false
+ignore_missing_imports = true
+# 使用 from __future__ import annotations，允许字符串形式类型注解
+warn_return_any = true
+warn_unused_ignores = true

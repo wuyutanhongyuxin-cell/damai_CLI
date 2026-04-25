@@ -1,0 +1,49 @@
+# Python 字节码
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# 打包产物
+dist/
+build/
+*.egg-info/
+*.egg
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 测试缓存
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# 覆盖率报告
+.coverage
+htmlcov/
+
+# 大麦 CLI 运行时数据（Cookie、配置等不提交）
+.damai-cli/
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 环境变量（敏感信息）
+.env
+.env.*
+
+# 项目特定：含登录态 / 真实抓包数据，绝不能提交
+cookies.json
+tmp_captures/
+tmp_probe_*.json
+mine_dump.html

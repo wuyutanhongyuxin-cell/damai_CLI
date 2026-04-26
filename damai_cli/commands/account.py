@@ -49,7 +49,9 @@ def register(cli: click.Group) -> None:
             # TODO pending capture: favorites 列表 API 仍未捕获。
             # 已抓到的 mtop.damai.wireless.user.my.content.get 仅返回"我的"页面计数
             # （praiseWantCount/myFollowCount/seeShowCount），不含具体演出列表。
-            # 当前 API 名 mtop.damai.user.myfavorite 是猜测值，未经真实流量验证。
+            # 2026-04-26 联网验证：mtop.damai.user.myfavorite 直接返回
+            # FAIL_SYS_API_NOT_FOUNDED — 该 API 名在 mtop 网关不存在，必须从 H5
+            # 真实流量重新捕获正确名字（候选：collection / wantSee / followProject）。
             raw = c.request(
                 "mtop.damai.user.myfavorite",
                 "1.0",

@@ -135,7 +135,10 @@ def register(cli: click.Group) -> None:
     def venue(venue_id):
         # 场馆详情
         with get_client() as c:
-            # TODO pending capture: venue 未抓到实测 api
+            # TODO pending capture: venue 未抓到实测 api。
+            # 2026-04-26 联网验证：mtop.damai.mdata.venue.getvenuedetail 直接返回
+            # FAIL_SYS_API_NOT_FOUNDED — 该 API 名在 mtop 网关不存在，需要从 H5
+            # 真实流量重新捕获（候选：venue.detail / project.venue / venuelist）。
             raw = c.request(
                 "mtop.damai.mdata.venue.getvenuedetail", "1.0", {"venueId": venue_id}
             )

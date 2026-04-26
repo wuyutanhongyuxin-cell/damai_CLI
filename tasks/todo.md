@@ -29,13 +29,14 @@
 
 ## Phase 5：账户命令 ✅
 - [x] P5-1 `commands/account.py`：favorites / orders / viewers
-- [ ] P5-2 favorites 真实 API 仍待捕获（`mtop.damai.user.myfavorite` 是猜测值；已抓 `my.content.get` 仅有计数）
+- [ ] P5-2 favorites 真实 API 仍待捕获。**2026-04-26 联网验证**：`mtop.damai.user.myfavorite` 返回 FAIL_SYS_API_NOT_FOUNDED，证实是错误名
 - [ ] P5-3 `--status` 选项映射（待空账户外的真实订单 capture）
 
 ## Phase 6：交易命令（带护栏）✅
 - [x] P6-1 `commands/track.py`：开票轮询 + plyer 系统通知（可选降级）
 - [x] P6-2 `commands/trade.py`：build（dry-run）/ submit（`--i-understand-risk`）/ buy / pay-url
 - [ ] P6-3 5 路真实 capture 仍 pending：build / submit / buy / pay-url / venue
+- [ ] P6-4 venue **2026-04-26 联网验证**：`mtop.damai.mdata.venue.getvenuedetail` 返回 FAIL_SYS_API_NOT_FOUNDED，证实是错误名
 
 ## Phase 7：文档 ✅
 - [x] P7-1 `CONTRACTS.md`（完整契约）+ `CLAUDE.md`（项目规范）

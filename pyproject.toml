@@ -10,8 +10,22 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "LicenseRef-Study-Research-Only"
 license-files = ["LICENSE"]
+# TODO 上 PyPI 前必须改成真实姓名/邮箱
 authors = [
     { name = "placeholder", email = "placeholder@example.com" },
+]
+keywords = ["damai", "ticket", "cli", "mtop", "performance"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
     "click>=8.1",
@@ -22,6 +36,12 @@ dependencies = [
     "qrcode-terminal>=0.8",
     "plyer>=2.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/wuyutanhongyuxin-cell/damai_CLI"
+Repository = "https://github.com/wuyutanhongyuxin-cell/damai_CLI"
+Issues = "https://github.com/wuyutanhongyuxin-cell/damai_CLI/issues"
+Changelog = "https://github.com/wuyutanhongyuxin-cell/damai_CLI/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 # QR 登录需要无头浏览器

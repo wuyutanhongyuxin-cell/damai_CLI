@@ -5,6 +5,7 @@ import time
 
 import click
 
+from ..client import MtopClient
 from ._common import get_client
 
 # 轮询时随机 jitter 范围（秒）
@@ -59,7 +60,7 @@ def _notify(item_id: str, use_notify: bool, message: str) -> None:
         pass
 
 
-def _poll_once(client, item_id: str, perform_id: str | None) -> dict:
+def _poll_once(client: MtopClient, item_id: str, perform_id: str | None) -> dict:
     """调一次 detail API，返回原始 data 字典。"""
     params: dict = {"itemId": item_id}
     if perform_id:

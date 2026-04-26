@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import cast
+
 import httpx
 
 from .exceptions import NeedSlideCaptcha, NotAuthenticated
@@ -56,7 +58,7 @@ def _post_login(payload: dict) -> httpx.Response:
 def _parse_body(resp: httpx.Response) -> dict:
     """安全解析 JSON 响应体；解析失败返回空字典。"""
     try:
-        return resp.json()
+        return cast(dict, resp.json())
     except Exception:
         return {}
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import http.cookiejar
+from collections.abc import Callable
 
 import browser_cookie3
 
@@ -10,7 +11,7 @@ from .exceptions import NotAuthenticated
 _DEFAULT_BROWSERS: list[str] = ["chrome", "edge", "firefox", "brave"]
 
 # browser_cookie3 支持的浏览器函数映射
-_BROWSER_LOADERS: dict[str, object] = {
+_BROWSER_LOADERS: dict[str, Callable[..., http.cookiejar.CookieJar]] = {
     "chrome": browser_cookie3.chrome,
     "edge": browser_cookie3.edge,
     "firefox": browser_cookie3.firefox,

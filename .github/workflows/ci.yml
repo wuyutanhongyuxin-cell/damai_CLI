@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install
+        run: |
+          python -m pip install -U pip
+          pip install -e ".[dev]"
+          pip install types-PyYAML
+
+      - name: Ruff
+        run: ruff check damai_cli tests
+
+      - name: Mypy
+        run: mypy damai_cli
+
+      - name: Static import contracts
+        run: python tests/_integration_check.py
+
+      - name: Pytest (offline)
+        run: pytest -q

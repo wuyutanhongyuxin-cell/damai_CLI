@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import sys
 import time
+from collections.abc import Callable
 
 import click
 
@@ -27,7 +28,7 @@ def _warn_write() -> None:
     )
 
 
-def _guard_captcha(fn, *args, **kwargs):
+def _guard_captcha(fn: Callable[..., dict], *args: object, **kwargs: object) -> dict:
     """调用 fn；遇滑块/IP封锁立即 emit err 并 sys.exit(1)。"""
     from ..output import emit, err
 

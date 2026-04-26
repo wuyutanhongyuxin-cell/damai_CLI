@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import random
 import time
+from typing import cast
 
 import httpx
 
@@ -129,7 +130,7 @@ class MtopClient:
         if resp.status_code == 429:
             raise RateLimited(f"HTTP 429: {resp.text[:120]}")
         try:
-            return resp.json()
+            return cast(dict, resp.json())
         except Exception as exc:
             raise UpstreamError(f"响应非 JSON: {resp.text[:200]}") from exc
 

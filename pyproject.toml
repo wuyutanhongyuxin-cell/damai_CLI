@@ -10,9 +10,8 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = "LicenseRef-Study-Research-Only"
 license-files = ["LICENSE"]
-# TODO 上 PyPI 前必须改成真实姓名/邮箱
 authors = [
-    { name = "placeholder", email = "placeholder@example.com" },
+    { name = "KkL", email = "wuyutanhongyuxin@gmail.com" },
 ]
 keywords = ["damai", "ticket", "cli", "mtop", "performance"]
 classifiers = [

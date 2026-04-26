@@ -86,12 +86,14 @@ class TestReadingParse:
         assert any(s.name for s in shows)
 
     def test_artist(self, patch_jitter, isolated_jar):
-        # CONTRACTS 标注 pending：by-name 接口未抓到，真实 capture data 是
-        # {all, more} 嵌套结构，此测试仅验解析链路不崩
+        # 实测 channel.artiste 是品类目录接口，data.more.list[] 是 {id,name,pinyin}
         api = "mtop.damai.wireless.channel.artiste"
         with _make_client({api: _load_body(api)}, isolated_jar) as c:
-            data = c.request(api, "1.0", {"artistName": "x"})
-        Artist.from_dict(data)
+            data = c.request(api, "1.0", {"groupId": "2394"})
+        items = (data.get("more") or {}).get("list") or []
+        assert items, "more.list 为空，capture 异常"
+        artists = [Artist.from_dict(x) for x in items]
+        assert all(a.id and a.name for a in artists)
 
     def test_category(self, patch_jitter, isolated_jar):
         api = "mtop.damai.wireless.search.cms.category.get"

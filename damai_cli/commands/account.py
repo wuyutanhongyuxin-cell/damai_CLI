@@ -46,7 +46,10 @@ def register(cli: click.Group) -> None:
     def favorites() -> dict:
         """查看我的收藏演出。"""
         with get_client(need_login=True) as c:
-            # TODO pending capture: favorites 未抓到实测 api
+            # TODO pending capture: favorites 列表 API 仍未捕获。
+            # 已抓到的 mtop.damai.wireless.user.my.content.get 仅返回"我的"页面计数
+            # （praiseWantCount/myFollowCount/seeShowCount），不含具体演出列表。
+            # 当前 API 名 mtop.damai.user.myfavorite 是猜测值，未经真实流量验证。
             raw = c.request(
                 "mtop.damai.user.myfavorite",
                 "1.0",

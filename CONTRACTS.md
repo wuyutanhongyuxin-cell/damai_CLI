@@ -422,12 +422,12 @@ if __name__ == "__main__":
 - `damai show <item_id>` → mtop.damai.item.detail.getdetail 1.0；响应嵌套 `item/venue/price/guide/itemPics`，需扁平化后喂给 `Show.from_dict`；返回 `{show, buyButton}`（buyButton 原样，H5 部分演出会标禁购）
 - `damai hot [--city 852]` → mtop.damai.wireless.search.broadcast.home 1.0；响应 `projects[]` + `top` 合并（top 置首）
 - `damai calendar [--city 852] [--limit 15] [--category-id 0]` → mtop.damai.wireless.search.project.classify 1.0；响应 `nearByCity[]`
-- `damai artist <name>` → mtop.damai.wireless.channel.artiste 1.0  # pending：实测 API 以 groupId 查询，by-name 接口未抓到
+- `damai artist [name] --group-id <id>` → mtop.damai.wireless.channel.artiste 1.0；接口本质是"列出品类 groupId 下全部艺人"，响应 `data.more.list[]` 为 `{id,name,pinyin}`；name 非空时本地 substring 过滤。真·by-name 查询接口未抓到
 - `damai venue <id>` → mtop.damai.mdata.venue.getvenuedetail  # pending capture：独立场馆 API 未抓到
 - `damai category` → 动态（mtop.damai.wireless.search.cms.category.get 2.0，data={"apiVersion":"3.1"}，响应 `data[]`）+ 本地静态兜底表
 
 ### commands/account.py
-- `damai favorites` → mtop.damai.user.myfavorite  # pending capture：capture 脚本刻意避开"想看"按钮以免触发 favorite.add 写操作
+- `damai favorites` → mtop.damai.user.myfavorite  # pending capture：列表 API 仍未捕获。已抓到的 mtop.damai.wireless.user.my.content.get 只返回"我的"页面计数（praiseWantCount/myFollowCount 等），不含演出列表；当前 API 名 myfavorite 是猜测值未经真实流量验证
 - `damai orders [--status pending|paid|refunded]` → mtop.damai.wireless.order.orderlist 2.0；必填 payload `{queryType:"0", queryOrderType:1, pageNum:1, pageSize:10, bindUserIdList:"[]"}`；响应 `orderList[]`；`--status` 选项当前未映射到服务端（空账户无订单可验证状态字段）
 - `damai viewers` → mtop.damai.wireless.user.customerlist.get 2.0；必填 payload `{customerType:"default"}`；响应 `customerList[]`（空账户返回空数组，真字段待真账户验证）
 

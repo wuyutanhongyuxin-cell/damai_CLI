@@ -111,16 +111,23 @@ def register(cli: click.Group) -> None:
         return {"shows": [asdict(s) for s in shows]}
 
     @cli.command(name="artist")
-    @click.argument("name")
+    @click.argument("name", required=False, default="")
+    @click.option("--group-id", "group_id", required=True,
+                  help="大麦品类 groupId（如 2394=演唱会）；接口仅支持按品类列艺人，不支持 by-name 查询")
     @run_command
-    def artist(name):
-        # 艺人信息查询
+    def artist(name, group_id):
+        """列出品类 groupId 下全部艺人；name 非空时按名称 substring 过滤。"""
+        # 实测 channel.artiste 是品类目录接口，data.more.list[] 是 {id,name,pinyin}
         with get_client() as c:
             raw = c.request(
-                "mtop.damai.wireless.channel.artiste", "1.0", {"artistName": name}
+                "mtop.damai.wireless.channel.artiste", "1.0", {"groupId": group_id}
             )
-        art = Artist.from_dict(raw)
-        return {"artist": asdict(art)}
+        items = (raw.get("more") or {}).get("list") or []
+        if name:
+            kw = name.strip().lower()
+            items = [x for x in items if kw in str(x.get("name") or "").lower()]
+        artists = [asdict(Artist.from_dict(x)) for x in items]
+        return {"artists": artists, "total": len(artists)}
 
     @cli.command(name="venue")
     @click.argument("venue_id")

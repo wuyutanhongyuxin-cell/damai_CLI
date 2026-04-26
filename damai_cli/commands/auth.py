@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import click
 
-from ._common import run_command, get_client
-from ..output import ok
 from ..cookies import CookieJar
+from ..output import ok
+from ._common import get_client, run_command
 
 
 def _make_auth_manager():

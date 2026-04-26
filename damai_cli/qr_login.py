@@ -62,7 +62,7 @@ async def _poll_login(page: object, context: object, timeout: int) -> None:
     """
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
-        await asyncio.sleep(_POLL_INTERVAL)  # type: ignore[attr-defined]
+        await asyncio.sleep(_POLL_INTERVAL)
         try:
             url = page.url  # type: ignore[attr-defined]
         except Exception:
@@ -70,7 +70,7 @@ async def _poll_login(page: object, context: object, timeout: int) -> None:
         if not url or url.startswith("about:") or "passport." in url:
             continue
         if any(d in url for d in _SUCCESS_DOMAINS):
-            await asyncio.sleep(_SETTLE_AFTER_LOGIN)  # type: ignore[attr-defined]
+            await asyncio.sleep(_SETTLE_AFTER_LOGIN)
             return
     raise NotAuthenticated("登录超时，请重试")
 
@@ -125,7 +125,7 @@ async def _headed_flow(page: object, context: object, timeout: int) -> dict[str,
             await page.wait_for_load_state("load", timeout=10_000)  # type: ignore[attr-defined]
         except Exception:
             pass
-    print(f"[登录] 请在弹出的浏览器窗口中完成登录（扫码/密码/短信均可）")
+    print("[登录] 请在弹出的浏览器窗口中完成登录（扫码/密码/短信均可）")
     print(f"[登录] CLI 将轮询登录状态，最长等待 {timeout} 秒")
     await _poll_login(page, context, timeout)
     raw = await context.cookies()  # type: ignore[attr-defined]

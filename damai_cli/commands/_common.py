@@ -3,10 +3,8 @@ from __future__ import annotations
 import functools
 import sys
 
-import click
-
-from ..output import ok, err, emit
 from ..exceptions import DamaiError, NotAuthenticated
+from ..output import emit, err, ok
 
 
 def run_command(handler):
@@ -31,8 +29,8 @@ def run_command(handler):
 
 def get_client(need_login: bool = False):
     # 延迟导入避免循环；need_login=True 时校验 cookie 状态
-    from ..cookies import CookieJar
     from ..client import MtopClient
+    from ..cookies import CookieJar
 
     jar = CookieJar()
     if need_login and not jar.is_logged_in():

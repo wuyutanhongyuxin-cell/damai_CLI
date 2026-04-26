@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict  # noqa: F401（asdict 供外部 from models import asdict）
-from typing import Any
+from dataclasses import dataclass
 
 
 def _str(raw: dict, *keys: str) -> str | None:

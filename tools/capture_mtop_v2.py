@@ -8,7 +8,10 @@
 """
 from __future__ import annotations
 
-import asyncio, json, re, sys
+import asyncio
+import json
+import re
+import sys
 from collections import defaultdict
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse

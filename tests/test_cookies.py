@@ -5,10 +5,7 @@ import os
 import time
 from pathlib import Path
 
-import pytest
-
 from damai_cli.cookies import CookieJar
-
 
 # ─────────────────────────────────────────
 # 辅助：构造带初始数据的 CookieJar
@@ -39,7 +36,7 @@ def test_save_creates_file(tmp_path: Path) -> None:
 
 def test_load_returns_saved_data(tmp_path: Path) -> None:
     """load 应读回 save 写入的内容。"""
-    jar = _make_jar(tmp_path, {"_nk_": "testuser", "cookie2": "c2value"})
+    _make_jar(tmp_path, {"_nk_": "testuser", "cookie2": "c2value"})
     # 新建一个 jar 指向同一路径，确认从文件读
     jar2 = CookieJar(path=tmp_path / "cookies.json")
     result = jar2.load()

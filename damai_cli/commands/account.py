@@ -5,9 +5,9 @@ from dataclasses import asdict
 
 import click
 
-from ._common import get_client, run_command
 from ..models import Order, Show, Viewer
 from ..output import ok
+from ._common import get_client, run_command
 
 # 证件号打码：保留前 4 后 4，中间全替换为 *
 _CERT_RE = re.compile(r"^(.{4})(.+)(.{4})$")

@@ -4,9 +4,9 @@ from dataclasses import asdict
 
 import click
 
-from ._common import run_command, get_client
-from ..models import Show, Artist, Venue
 from ..filter import rank_shows
+from ..models import Artist, Show, Venue
+from ._common import get_client, run_command
 
 # 静态分类表（大麦主流演出类型）
 _STATIC_CATEGORIES = [

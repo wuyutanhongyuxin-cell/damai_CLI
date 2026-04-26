@@ -1,6 +1,9 @@
 """静态 import 契约检查：扫 damai_cli 下所有文件，验证跨模块 from-import 的名字真实存在。"""
 from __future__ import annotations
-import ast, pathlib, sys
+
+import ast
+import pathlib
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1] / "damai_cli"
 PKG = "damai_cli"
@@ -72,11 +75,11 @@ def main() -> int:
                     if alias.name not in exp:
                         errors.append(f"{f.relative_to(ROOT.parent)}:{node.lineno} imports {alias.name} from {node.module or '.'} (level={node.level}) not found in {target.relative_to(ROOT.parent)}")
     if errors:
-        print("FAIL: {} issue(s)".format(len(errors)))
+        print(f"FAIL: {len(errors)} issue(s)")
         for e in errors:
             print("  -", e)
         return 1
-    print("OK: {} files, all cross-module from-imports resolved".format(len(files)))
+    print(f"OK: {len(files)} files, all cross-module from-imports resolved")
     return 0
 
 if __name__ == "__main__":

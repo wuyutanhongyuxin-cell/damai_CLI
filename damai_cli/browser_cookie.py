@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import http.cookiejar
-from typing import TYPE_CHECKING
 
 import browser_cookie3
 
@@ -28,7 +27,7 @@ def _load_browser(name: str, domain: str) -> http.cookiejar.CookieJar | None:
     if loader is None:
         return None
     try:
-        return loader(domain_name=domain)  # type: ignore[call-arg]
+        return loader(domain_name=domain)
     except Exception:
         # 浏览器未安装或 profile 锁定时静默跳过
         return None

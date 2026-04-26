@@ -29,7 +29,7 @@ def _warn_write() -> None:
 
 def _guard_captcha(fn, *args, **kwargs):
     """调用 fn；遇滑块/IP封锁立即 emit err 并 sys.exit(1)。"""
-    from ..output import err, emit
+    from ..output import emit, err
 
     try:
         return fn(*args, **kwargs)

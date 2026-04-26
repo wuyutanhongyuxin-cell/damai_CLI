@@ -1,15 +1,12 @@
 from __future__ import annotations
 
 import json
-import os
 import sys
-
-import pytest
 
 # --- 测试 ok() ---
 
 def test_ok_has_required_fields():
-    from damai_cli.output import ok, SCHEMA_VERSION
+    from damai_cli.output import SCHEMA_VERSION, ok
     result = ok({"foo": "bar"})
     assert result["ok"] is True
     assert result["schema_version"] == SCHEMA_VERSION
@@ -32,7 +29,7 @@ def test_ok_without_pagination_no_key():
 # --- 测试 err() ---
 
 def test_err_has_error_code():
-    from damai_cli.output import err, SCHEMA_VERSION
+    from damai_cli.output import SCHEMA_VERSION, err
     result = err("not_found", "资源不存在")
     assert result["ok"] is False
     assert result["schema_version"] == SCHEMA_VERSION
@@ -98,10 +95,21 @@ def test_detect_mode_no_env_no_tty(monkeypatch):
 
 def test_exception_codes():
     from damai_cli.exceptions import (
-        NotAuthenticated, SessionExpired, SignFailed, NeedSlideCaptcha,
-        IpBlocked, RateLimited, ItemSoldOut, ItemNotStarted,
-        RealNameRequired, NetworkError, UpstreamError, NotFound,
-        InvalidInput, Unsupported, TokenEmpty,
+        InvalidInput,
+        IpBlocked,
+        ItemNotStarted,
+        ItemSoldOut,
+        NeedSlideCaptcha,
+        NetworkError,
+        NotAuthenticated,
+        NotFound,
+        RateLimited,
+        RealNameRequired,
+        SessionExpired,
+        SignFailed,
+        TokenEmpty,
+        Unsupported,
+        UpstreamError,
     )
     cases = [
         (NotAuthenticated, "not_authenticated"),

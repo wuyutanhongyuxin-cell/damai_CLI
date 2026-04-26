@@ -48,7 +48,7 @@ def _notify(item_id: str, use_notify: bool, message: str) -> None:
     if not use_notify:
         return
     try:
-        from plyer import notification  # type: ignore
+        from plyer import notification
         notification.notify(
             title="大麦开票提醒",
             message=message,
